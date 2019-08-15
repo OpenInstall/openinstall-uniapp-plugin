@@ -1,5 +1,5 @@
 ## 插件介绍
-`openinstall` 插件是 openinstall 为了方便 dcloud 用户集成使用 openinstall 原生 sdk 而开发的，实现了携带参数安装，渠道统计，一键拉起全部功能，是最完善最精准的安装来源解决方案。
+`openinstall` 插件是 openinstall 为了方便 ubi-app 集成使用 openinstall 原生 sdk 而开发的，实现了携带参数安装，渠道统计，一键拉起全部功能，是最完善最精准的安装来源解决方案。
 
 `openinstall` 可帮助 Android/iOS 开发者精确的获取 App 每一次安装来源；在 App 安装或拉起后，直达指定场景，大大提高用户转化率和留存率。同时，openinstall 在精准的 app 安装来源跟踪的技术上，开发了免打包，跨平台的渠道统计功能，轻松创建与管理成千上万的渠道，实现线上线下全渠道覆盖。openinstall 统计数据完全独立于第三方平台，提供多维度的统计报表，实时客观地反映渠道效果。
 
@@ -40,8 +40,12 @@ const openinstall = uni.requireNativePlugin('openinstall');
 ```
 
 #### 获取拉起数据
-暂不支持
-
+在 `App.vue` 的 `onLaunch` 方法中注册拉起回调
+``` js
+openinstall.registerWakeUp(function(result){
+            console.log('getWakeup : channel=' + result.channelCode + ', data=' + result.bindData);
+    });
+```
 #### 注册量统计
 示例：
 ``` js
