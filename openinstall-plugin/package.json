@@ -1,15 +1,15 @@
 {
-    "name": "uni-app-openinstall",
-    "id": "openinstall",
+    "name": "openinstall-uniapp-plugin",
+    "id": "openinstall-plugin",
     "version": "1.0.0",
-    "description": "openinstall集成SDK插件",
+    "description": "uni-app集成openinstall SDK插件",
     "_dp_type": "nativeplugin",
     "_dp_nativeplugin": {
         "ios": {
             "plugins": [
                 {
                     "type": "module",
-                    "name": "openinstall",
+                    "name": "openinstall-plugin",
                     "class": "OpenInstallUniModule"
                 }
             ],
@@ -34,7 +34,7 @@
             "plugins": [
                 {
                     "type": "module",
-                    "name": "openinstall",
+                    "name": "openinstall-plugin",
                     "class": "io.openinstall.dcloud.OpenInstallModule"
                 }
             ],

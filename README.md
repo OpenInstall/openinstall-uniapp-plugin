@@ -21,7 +21,7 @@
 
 #### 引用
 ``` js
-const openinstall = uni.requireNativePlugin('openinstall');
+const openinstall = uni.requireNativePlugin('openinstall-plugin');
 ```
 
 #### 获取安装数据
