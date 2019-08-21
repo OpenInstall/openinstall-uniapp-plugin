@@ -8,14 +8,14 @@
 
 ## 配置
 
-目前**iOS平台**下，openinstall云端插件不支持**通用链接**功能，请使用**添加本地插件**的方式来实现通用连接功能，需要修改package.json中的设置，请[下载插件源码](https://github.com/OpenInstall/openinstall-uniapp-plugin)
-
 #### 配置appkey
 在 mainfest.json 的 **App原生插件配置** 的 openinstall 插件配置框内配置 `openinstall` 分配给应用的 `AppKey`
 
 #### 配置scheme
 在 mainfest.json 的 **App常用其它配置** 中配置 `openinstall` 分配给应用的 `scheme`  
 
+#### 配置universal links（iOS平台）
+此插件暂不支持配置 **通用链接** ，如需实现通用连接功能请下载插件，修改 `openinstall-plugin` 本地插件下的 `package.json` 中的配置，通过离线打包来实现
 
 ## 使用教程
 
