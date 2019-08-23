@@ -15,7 +15,16 @@
 在 mainfest.json 的 **App常用其它配置** 中配置 `openinstall` 分配给应用的 `scheme`  
 
 #### 配置universal links（iOS平台）
-此插件暂不支持配置 **通用链接** ，如需实现通用连接功能请下载插件，修改 `openinstall-plugin` 本地插件下的 `package.json` 中的配置，通过离线打包来实现
+需将插件下载到本地修改 `package.json` 中内容
+``` json
+"entitlements": {
+    "com.apple.developer.associated-domains": [
+        "openinstall为应用生成的关联域名"
+    ]
+}
+```
+然后再提交云端打包  
+参考 [本地uni-app原生插件提交云端打包](https://ask.dcloud.net.cn/article/35844)
 
 ## 使用教程
 
