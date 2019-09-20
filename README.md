@@ -15,16 +15,20 @@
 在 mainfest.json 的 **App常用其它配置** 中配置 `openinstall` 分配给应用的 `scheme`  
 
 #### 配置universal links（iOS平台）
-需将插件下载到本地修改 `package.json` 中内容
-``` json
-"entitlements": {
-    "com.apple.developer.associated-domains": [
-        "openinstall为应用生成的关联域名"
-    ]
-}
+
+HBuilderX2.3.0开始云端打包支持配置XCode中的Capabilities [参考文档](https://ask.dcloud.net.cn/article/36393)  
+在HBuilderX中的manifest.json中配置域名：  
+在"plus" -> "distribute" -> "apple" -> "capabilities" -> "entitlements"节点（uni-app项目在"app-plus" -> "distribute" -> "ios" -> "capabilities" -> "entitlements"）下添加"com.apple.developer.associated-domains"字段，字段值为字符串数组，每个字符串为要关联的域名
+
+``` xml
+    "capabilities": {  
+        "entitlements": {  
+            "com.apple.developer.associated-domains": [  
+                "openinstall分配给应用的关联域名"  
+            ]  
+        }  
+    }
 ```
-然后再提交云端打包  
-参考 [本地uni-app原生插件提交云端打包](https://ask.dcloud.net.cn/article/35844)
 
 ## 使用教程
 
