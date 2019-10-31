@@ -1,7 +1,7 @@
 {
     "name": "openinstall-uniapp-plugin",
     "id": "openinstall-plugin",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "uni-app集成openinstall SDK插件",
     "_dp_type": "nativeplugin",
     "_dp_nativeplugin": {
@@ -16,13 +16,6 @@
             "hooksClass": "OpenInstallUniProxy",
             "integrateType": "library",
             "deploymentTarget": "8.0",
-            "capabilities": {
-                "entitlements": {
-                    "com.apple.developer.associated-domains": [
-                        "openinstall为应用生成的关联域名"
-                    ]
-                } 
-            },
 			"parameters": {
 			    "APP_KEY": {
 			        "des": "openinstall为应用生成的appkey",
