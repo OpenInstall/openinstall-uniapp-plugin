@@ -31,7 +31,7 @@
                     "class": "io.openinstall.dcloud.OpenInstallModule"
                 }
             ],
-            "hooksClass": "io.openinstall.dcloud.OpenInstallHook",
+            "hooksClass": "",
             "integrateType": "aar",
             "dependencies": [],
             "abis": [],
