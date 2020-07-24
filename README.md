@@ -30,6 +30,8 @@ HBuilderX2.3.0开始云端打包支持配置XCode中的Capabilities [参考文�
     }
 ```
 
+- openinstall完全兼容微信openSDK1.8.6以上版本的通用链接跳转功能，HBuilderX -> manifest.json -> App SDK配置，请在对应的微信登录/分享/支付中填入正确格式的universal link链接，参考 [iOS常见问题](https://www.openinstall.io/doc/ios_sdk_faq.html)
+
 ## 三、使用教程
 
 #### 引用
