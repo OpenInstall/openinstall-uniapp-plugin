@@ -6,7 +6,7 @@
 ## 使用前准备
 前往 [openinstall 官网](https://www.openinstall.io/)，注册账户，登录管理控制台，创建应用后，跳过 "集成指引"，在 "应用集成" 的对应平台的 "应用配置" 中获取 `appkey` 和 `scheme` 以及 iOS 的关联域名。
 
-针对使用了 渠道统计 功能中的 广告渠道 效果监测功能的集成，需要参考 [补充文档](./Ad.md)
+针对使用了 渠道统计 功能中的 广告渠道 效果监测功能的集成，需要参考 [补充文档](#ad)
 ## 二、配置
 
 #### 配置appkey
@@ -41,8 +41,9 @@ const openinstall = uni.requireNativePlugin('openinstall-plugin');
 ```
 
 #### 初始化
-示例：  
-在 `App.vue` 的 `onLaunch` 方法中进行初始化
+`init()`  
+
+示例：在 `App.vue` 的 `onLaunch` 方法中进行初始化
 ``` js
 openinstall.init();
 ```
@@ -75,6 +76,7 @@ openinstall.registerWakeUp(function(result){
 });
 ```
 #### 注册量统计
+`reportRegister()`  
 示例：
 ``` js
 openinstall.reportRegister();
@@ -93,3 +95,71 @@ openinstall.reportEffectPoint("effect_test", 1);
 ## 四、导出apk/api包并上传
 - 代码集成完毕后，需要导出安装包上传openinstall后台，openinstall会自动完成所有的应用配置工作。  
 - 上传完成后即可开始在线模拟测试，体验完整的App安装/拉起流程；待测试无误后，再完善下载配置信息。
+
+
+---
+
+<a id="ad"></a>
+## 广告接入补充文档
+
+### Android平台
+
+（1） 在 `manifest.json` 中声明权限，在 “App模块权限配置” 的 “Android打包权限配置” 勾选上 `<uses-permission android:name="android.permission.READ_PHONE_STATE"/>`
+
+（2）在 `manifest.json` 中设置，关闭 `uni-app` 自动获取 `android.permission.READ_PHONE_STATE` 权限
+``` json
+{
+    "app-plus" : {
+        "distribute" : {
+            "android" : {
+                "permissionPhoneState" : {
+                    "request" : "none",
+                    "prompt" : ""
+                },
+            }
+        }
+    }
+}
+                
+```
+（3）在 `App.vue` 的 `onLaunch` 方法中进行初始化，在初始化之前申请权限
+``` js
+if (plus.os.name == "Android") {
+    plus.android.requestPermissions(["android.permission.READ_PHONE_STATE"], function(event) {
+        if(event.granted){
+            console.log(event.granted);
+        }
+        if(event.deniedPresent){
+            console.log(event.deniedPresent);
+        }
+        if(event.deniedAlways){
+            console.log(event.deniedAlways);
+        }
+        // 权限申请成功，不管用户是否同意，都需要做初始化
+        openinstall.init();
+    }, function(event) {
+        // 权限申请错误
+    })
+}
+```
+
+### iOS平台
+
+（1）需在manifest.json的 “App常用其它设置” 中配置勾选 “使用广告标识（IDFA）”
+
+（2）下载官方插件[iOS平台获取idfa](https://ext.dcloud.net.cn/plugin?id=726)，并保存到目录下，如js_sdk/dc-idfa/idfa.js
+
+（3）在 `App.vue` 中引用此模块，如下：
+``` js
+import idfa from "@/js_sdk/dc-idfa/idfa.js"
+```
+
+（4）在 `App.vue` 的 `onLaunch` 方法中进行初始化，如下：
+``` js
+if('iOS' == plus.os.name){
+    var fid = "";
+    fid = idfa.value();//如果需要idfa则开启
+    openinstall.init(fid);
+    console.log(fid);
+};
+```
