@@ -104,9 +104,26 @@ openinstall.reportEffectPoint("effect_test", 1);
 
 ### Android平台
 
-（1） 在 `manifest.json` 中声明权限，在 “App模块权限配置” 的 “Android打包权限配置” 勾选上 `<uses-permission android:name="android.permission.READ_PHONE_STATE"/>`
+（1）针对广告平台接入，新增配置接口，在调用 init 之前调用。参考 [广告平台对接Android集成指引](https://www.openinstall.io/doc/ad_android.html)
+``` js
+var options = {
+    adEnabled: true,
+    oaid: "通过移动安全联盟获取到的 oaid",
+    gaid: "通过 google api 获取到的 advertisingId",
+}
+openinstall.configAndroid(options);
+```
+例如： 开发者自己获取到了 oaid，但是需要 openinstall 获取 gaid，则配置参数为
+``` js
+var options = {
+    adEnabled: true,
+    oaid: "通过移动安全联盟获取到的 oaid",
+    gaid: null,
+}
+```
+（2） 为了精准地匹配到渠道，需要获取设备唯一标识码，因此需要在 `manifest.json` 中声明权限，在 “App模块权限配置” 的 “Android打包权限配置” 勾选上 `<uses-permission android:name="android.permission.READ_PHONE_STATE"/>`
 
-（2）在 `manifest.json` 中设置，关闭 `uni-app` 自动获取 `android.permission.READ_PHONE_STATE` 权限
+（3）在 `manifest.json` 中设置，关闭 `uni-app` 自动获取 `android.permission.READ_PHONE_STATE` 权限
 ``` json
 {
     "app-plus" : {
@@ -122,7 +139,7 @@ openinstall.reportEffectPoint("effect_test", 1);
 }
                 
 ```
-（3）在 `App.vue` 的 `onLaunch` 方法中进行初始化，在初始化之前申请权限
+（4）在 `App.vue` 的 `onLaunch` 方法中进行初始化，先申请权限，之后进行配置和初始化
 ``` js
 if (plus.os.name == "Android") {
     plus.android.requestPermissions(["android.permission.READ_PHONE_STATE"], function(event) {
@@ -135,6 +152,13 @@ if (plus.os.name == "Android") {
         if(event.deniedAlways){
             console.log(event.deniedAlways);
         }
+        // 配置初始化，设置 OAID 和 GAID
+        var options = {
+            adEnabled: true,
+		    oaid: null,
+		    gaid: null,
+        }
+        openinstall.configAndroid(options);
         // 权限申请成功，不管用户是否同意，都需要做初始化
         openinstall.init();
         // 初始化完成后，才能做其他api调用
