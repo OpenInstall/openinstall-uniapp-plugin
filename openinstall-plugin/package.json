@@ -15,7 +15,7 @@
             ],
             "hooksClass": "OpenInstallUniProxy",
             "integrateType": "library",
-            "deploymentTarget": "8.0",
+            "deploymentTarget": "9.0",
 			"parameters": {
 			    "APP_KEY": {
 			        "des": "openinstall为应用生成的appkey",
@@ -35,7 +35,7 @@
             "integrateType": "aar",
             "dependencies": [],
             "abis": [],
-            "minSdkVersion": "14",
+            "minSdkVersion": "19",
             "permissions": [
             ],
             "parameters": {
