@@ -90,7 +90,7 @@ openinstall.reportRegister();
 openinstall.reportEffectPoint("effect_test", 1);
 ```
 
-## 四、导出apk/api包并上传
+## 四、导出apk/ipa包并上传
 - 代码集成完毕后，需要导出安装包上传openinstall后台，openinstall会自动完成所有的应用配置工作。  
 - 上传完成后即可开始在线模拟测试，体验完整的App安装/拉起流程；待测试无误后，再完善下载配置信息。
 
@@ -106,19 +106,22 @@ openinstall.reportEffectPoint("effect_test", 1);
 ``` js
 var options = {
     adEnabled: true,
-    oaid: "通过移动安全联盟获取到的 oaid",
-    gaid: "通过 google api 获取到的 advertisingId",
 }
 openinstall.configAndroid(options);
 ```
-例如： 开发者自己获取到了 oaid，但是需要 openinstall 获取 gaid，则配置参数为
-``` js
-var options = {
-    adEnabled: true,
-    oaid: "通过移动安全联盟获取到的 oaid",
-    gaid: null,
-}
-```
+options 可选参数如下：
+
+- adEnabled: true  
+SDK 需要获取广告追踪相关参数
+- macDisabled: true  
+SDK 不需要获取 mac地址
+- imeiDisabled: true  
+SDK 不需要获取 imei
+- gaid: "通过 google api 获取到的 advertisingId"  
+SDK 使用传入的gaid，不再获取gaid
+- oaid: "通过移动安全联盟获取到的 oaid"  
+SDK 使用传入的oaid，不再获取oaid
+
 （2） 为了精准地匹配到渠道，需要获取设备唯一标识码，因此需要在 `manifest.json` 中声明权限，在 “App模块权限配置” 的 “Android打包权限配置” 勾选上 `<uses-permission android:name="android.permission.READ_PHONE_STATE"/>`
 
 （3）在 `manifest.json` 中设置，关闭 `uni-app` 自动获取 `android.permission.READ_PHONE_STATE` 权限

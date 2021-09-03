@@ -1,7 +1,7 @@
 {
     "name": "openinstall-uniapp-plugin",
     "id": "openinstall-plugin",
-    "version": "1.5.3",
+    "version": "1.5.4",
     "description": "uni-app集成openinstall SDK插件",
     "_dp_type": "nativeplugin",
     "_dp_nativeplugin": {
@@ -18,7 +18,7 @@
             "deploymentTarget": "9.0",
 			"parameters": {
 			    "APP_KEY": {
-			        "des": "openinstall为应用生成的appkey",
+			        "des": "openinstall为iOS应用生成的appkey",
 			        "key": "com.openinstall.APP_KEY"
 			    }
 			}
@@ -40,7 +40,7 @@
             ],
             "parameters": {
                 "APP_KEY": {
-                    "des": "openinstall为应用生成的appkey",
+                    "des": "openinstall为Android应用生成的appkey",
                     "key": "com.openinstall.APP_KEY"
                 }
             }
