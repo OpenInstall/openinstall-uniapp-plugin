@@ -1,12 +1,15 @@
 ## 一、插件介绍
-此插件是 openinstall 为了方便 uni-app 集成使用 openinstall 功能而开发的，实现了携带参数安装，渠道统计，一键拉起全部功能。
+此插件是 openinstall 为了方便 uni-app 集成使用 openinstall 功能而开发的，实现了携带参数安装，渠道统计(H5渠道、广告平台渠道、ASA渠道等)，一键拉起全部功能。
 
 `openinstall` 可帮助 Android/iOS 开发者精确的获取 App 每一次安装来源；在 App 安装或拉起后，直达指定场景，大大提高用户转化率和留存率。同时，openinstall 在精准的 app 安装来源跟踪的技术上，开发了免打包，跨平台的渠道统计功能，轻松创建与管理成千上万的渠道，实现线上线下全渠道覆盖。openinstall 统计数据完全独立于第三方平台，提供多维度的统计报表，实时客观地反映渠道效果。
 
-## 使用前准备
+## 使用前准备及说明
 前往 [openinstall 官网](https://www.openinstall.io/)，注册账户，登录管理控制台，创建应用后，跳过 "集成指引"，在 "应用集成" 的对应平台的 "应用配置" 中获取 `appkey` 和 `scheme` 以及 iOS 的关联域名。
 
-针对使用了 渠道统计 功能中的 广告渠道 效果监测功能的集成，需要参考 [补充文档](#ad)
+针对使用了 渠道统计 功能中的 广告渠道/ASA渠道 效果监测功能的集成，需要参考 [补充文档](#ad)
+
+为了适配苹果最新的ASA渠道统计API，插件版本1.5.4及以上版本中，iOS插件编译环境为Xcode 12.3，本地打包的用户需要注意。
+
 ## 二、配置
 
 #### 配置appkey
@@ -173,6 +176,11 @@ if (plus.os.name == "Android") {
 ```
 
 ### iOS平台
+包括广告平台渠道统计和ASA渠道：
+
+**广告平台渠道：**
+
+openinstall后台配置及上架指引可参考文档 [广告平台对接iOS集成指引](https://www.openinstall.io/doc/ad_ios.html)
 
 （1）需在manifest.json的 “App常用其它设置” 中配置勾选 “使用广告标识（IDFA）”
 
@@ -192,3 +200,10 @@ if('iOS' == plus.os.name){
     console.log(fid);
 };
 ```
+
+**ASA渠道：**
+
+插件1.5.4及以上版本增加了ASA渠道统计功能，已经集成在SDK内部，不需要增加额外代码。开发者可以通过`getInstall`方法获取`channelCode`对应的值，即为ASA渠道编号。  
+区分ASA渠道和H5渠道及其它渠道，可在openinstall开发者平台创建渠道时，创建不同的渠道编号来做区分，如`asa+广告系列ID`，例子：`asa_1234567890`。
+
+如何在openinstall开发者平台创建ASA渠道，并实现统计功能和上架前测试，请看图文文档 [ASA渠道使用指南](https://www.openinstall.io/doc/asa.html)
