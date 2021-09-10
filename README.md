@@ -1,16 +1,16 @@
 ## 一、插件介绍
-此插件是 openinstall 为了方便 uni-app 集成使用 openinstall 功能而开发的，实现了携带参数安装，渠道统计(H5渠道、广告平台渠道、ASA渠道等)，一键拉起全部功能。
+此插件是 openinstall 为了方便 uni-app 集成使用 openinstall 功能而开发的，实现了携带参数安装，渠道统计(H5渠道、广告平台渠道、ASA渠道等)，一键跳转全部功能。
 
 `openinstall` 可帮助 Android/iOS 开发者精确的获取 App 每一次安装来源；在 App 安装或拉起后，直达指定场景，大大提高用户转化率和留存率。同时，openinstall 在精准的 app 安装来源跟踪的技术上，开发了免打包，跨平台的渠道统计功能，轻松创建与管理成千上万的渠道，实现线上线下全渠道覆盖。openinstall 统计数据完全独立于第三方平台，提供多维度的统计报表，实时客观地反映渠道效果。
 
-## 使用前准备及说明
+## 二、集成准备
 前往 [openinstall 官网](https://www.openinstall.io/)，注册账户，登录管理控制台，创建应用后，跳过 "集成指引"，在 "应用集成" 的对应平台的 "应用配置" 中获取 `appkey` 和 `scheme` 以及 iOS 的关联域名。
 
-针对使用了 渠道统计 功能中的 广告渠道/ASA渠道 效果监测功能的集成，需要参考 [补充文档](#ad)
+![获取appkey和scheme](https://res.cdn.openinstall.io/doc/ios-appkey.png)
 
-为了适配苹果最新的ASA渠道统计API，插件版本1.5.4及以上版本中，iOS插件编译环境为Xcode 12.3，本地打包的用户需要注意。
+针对使用了 渠道统计 功能中的 广告平台渠道/ASA渠道 效果监测功能的集成，需要参考 [补充文档](#ad)
 
-## 二、配置
+> **注意：** 为了适配苹果最新的ASA渠道统计API，插件版本1.5.4及以上版本中，iOS插件编译环境为Xcode 12.3。
 
 #### 配置appkey
 在 mainfest.json 的 **App原生插件配置** 的 openinstall 插件配置框内配置 `openinstall` 分配给应用的 `AppKey`
@@ -21,18 +21,18 @@
 #### 配置universal links（iOS平台）
 
 HBuilderX2.3.0开始云端打包支持配置XCode中的Capabilities [参考文档](https://ask.dcloud.net.cn/article/36393)  
-在HBuilderX中的manifest.json中配置域名：  
-在"plus" -> "distribute" -> "apple" -> "capabilities" -> "entitlements"节点（uni-app项目在"app-plus" -> "distribute" -> "ios" -> "capabilities" -> "entitlements"）下添加"com.apple.developer.associated-domains"字段，字段值为字符串数组，每个字符串为要关联的域名
-
+在HBuilderX中的manifest.json中配置关联域名：  
 ``` xml
-    "capabilities": {  
-        "entitlements": {  
-            "com.apple.developer.associated-domains": [  
-                "openinstall分配给应用的关联域名"  
-            ]  
-        }  
-    }
+"capabilities": {  
+    "entitlements": {  
+        "com.apple.developer.associated-domains": [  
+            "openinstall分配给应用的关联域名"  
+        ]  
+    }  
+}
 ```
+示例如图：  
+![配置关联域名](https://res.cdn.openinstall.io/doc/uniapp-ulink.png)
 
 ## 三、使用教程
 
@@ -42,7 +42,8 @@ const openinstall = uni.requireNativePlugin('openinstall-plugin');
 ```
 
 #### 初始化
-<span style="color:#ff6666">**必须先进行初始化，才能调用其他api**</span>  
+><span style="color:#ff6666">**注意：** 1.3.2版本加入，必须先进行初始化，才能调用其他api</span>  
+
 `init()`    
 示例：在 `App.vue` 的 `onLaunch` 方法中进行初始化
 ``` js
@@ -95,12 +96,21 @@ openinstall.reportEffectPoint("effect_test", 1);
 
 ## 四、导出apk/ipa包并上传
 - 代码集成完毕后，需要导出安装包上传openinstall后台，openinstall会自动完成所有的应用配置工作。  
+![上传安装包](https://res.cdn.openinstall.io/doc/upload-ipa-jump.png)
 - 上传完成后即可开始在线模拟测试，体验完整的App安装/拉起流程；待测试无误后，再完善下载配置信息。
+![在线测试](https://res.cdn.openinstall.io/doc/js-test.png)
 
 
----
+
+## 如有疑问
+
+若您在集成或使用中有任何疑问或者困难，请 [联系我们](https://www.openinstall.io/)。 
+
+
+----- 
 
 <a id="ad"></a>
+
 ## 广告接入补充文档
 
 ### Android平台
@@ -127,22 +137,16 @@ SDK 使用传入的oaid，不再获取oaid
 
 （2） 为了精准地匹配到渠道，需要获取设备唯一标识码，因此需要在 `manifest.json` 中声明权限，在 “App模块权限配置” 的 “Android打包权限配置” 勾选上 `<uses-permission android:name="android.permission.READ_PHONE_STATE"/>`
 
-（3）在 `manifest.json` 中设置，关闭 `uni-app` 自动获取 `android.permission.READ_PHONE_STATE` 权限
+（3）在 `manifest.json` 中设置，关闭 `uni-app` 自动获取 `android.permission.READ_PHONE_STATE` 权限  
 ``` json
-{
-    "app-plus" : {
-        "distribute" : {
-            "android" : {
-                "permissionPhoneState" : {
-                    "request" : "none",
-                    "prompt" : ""
-                },
-            }
-        }
-    }
-}
-                
+    "permissionPhoneState" : {
+        "request" : "none",
+        "prompt" : ""
+    },        
 ```
+示例如图：  
+![设置权限](https://res.cdn.openinstall.io/doc/uniapp-permission.png)
+
 （4）在 `App.vue` 的 `onLaunch` 方法中进行初始化，先申请权限，之后进行配置和初始化
 ``` js
 if (plus.os.name == "Android") {
@@ -182,7 +186,7 @@ if (plus.os.name == "Android") {
 
 openinstall后台配置及上架指引可参考文档 [广告平台对接iOS集成指引](https://www.openinstall.io/doc/ad_ios.html)
 
-（1）需在manifest.json的 “App常用其它设置” 中配置勾选 “使用广告标识（IDFA）”
+（1）需在`manifest.json`的 “App常用其它设置” 中配置勾选 “使用广告标识（IDFA）”
 
 （2）下载官方插件[iOS平台获取idfa](https://ext.dcloud.net.cn/plugin?id=726)，并保存到目录下，如js_sdk/dc-idfa/idfa.js
 
