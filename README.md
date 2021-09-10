@@ -13,11 +13,11 @@
 > **注意：** 为了适配苹果最新的ASA渠道统计API，插件版本1.5.4及以上版本中，iOS插件编译环境为Xcode 12.3。
 
 #### 配置appkey
-在 mainfest.json 的 **App原生插件配置** 的 openinstall 插件配置框内配置 `openinstall` 分配给应用的 `AppKey`
-
+在 mainfest.json 的 **App原生插件配置** 的 openinstall 插件配置框内配置 `openinstall` 分配给应用的 `AppKey`  
+![设置appkey](https://res.cdn.openinstall.io/doc/uniapp-appkey.jpg)
 #### 配置scheme
-在 mainfest.json 的 **App常用其它配置** 中配置 `openinstall` 分配给应用的 `scheme`  
-
+在 mainfest.json 的 **App常用其它配置** 中配置 `openinstall` 分配给应用的 `scheme`    
+![设置scheme](https://res.cdn.openinstall.io/doc/uniapp-scheme.jpg)
 #### 配置universal links（iOS平台）
 
 HBuilderX2.3.0开始云端打包支持配置XCode中的Capabilities [参考文档](https://ask.dcloud.net.cn/article/36393)  
