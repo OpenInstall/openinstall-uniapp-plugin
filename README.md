@@ -42,13 +42,12 @@ const openinstall = uni.requireNativePlugin('openinstall-plugin');
 ```
 
 #### 初始化
-><span style="color:#ff6666">**注意：** 1.3.2版本加入，必须先进行初始化，才能调用其他api</span>  
-
 `init()`    
 示例：在 `App.vue` 的 `onLaunch` 方法中进行初始化
 ``` js
 openinstall.init();
 ```
+>**注意：** 1.3.2版本加入，必须先进行初始化，才能调用其他api
 
 #### 获取安装数据
 `getInstall(seconds, callback)`
@@ -122,18 +121,16 @@ var options = {
 }
 openinstall.configAndroid(options);
 ```
-options 可选参数如下：
+options 参数如下：
 
-- adEnabled: true  
-SDK 需要获取广告追踪相关参数
-- macDisabled: true  
-SDK 不需要获取 mac地址
-- imeiDisabled: true  
-SDK 不需要获取 imei
-- gaid: "通过 google api 获取到的 advertisingId"  
-SDK 使用传入的gaid，不再获取gaid
-- oaid: "通过移动安全联盟获取到的 oaid"  
-SDK 使用传入的oaid，不再获取oaid
+| 参数名| 参数类型 | 描述 |  
+| --- | --- | --- |
+| adEnabled| bool | 广告平台接入开关（必须） |
+| macDisabled | bool | 是否禁止 SDK 获取 mac 地址 |
+| imeiDisabled | bool | 是否禁止 SDK 获取 imei |
+| gaid | string | 通过 google api 获取到的 advertisingId，SDK 将不再获取gaid |
+| oaid | string | 通过移动安全联盟获取到的 oaid，SDK 将不再获取oaid |
+
 
 （2） 为了精准地匹配到渠道，需要获取设备唯一标识码，因此需要在 `manifest.json` 中声明权限，在 “App模块权限配置” 的 “Android打包权限配置” 勾选上 `<uses-permission android:name="android.permission.READ_PHONE_STATE"/>`
 
