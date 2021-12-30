@@ -1,5 +1,5 @@
 ## 一、插件介绍
-此插件是 openinstall 为了方便 uni-app 集成使用 openinstall 功能而开发的，实现了携带参数安装，渠道统计(H5渠道、广告平台渠道、ASA渠道等)，一键跳转全部功能。
+此插件是 openinstall 为了方便 uni-app 集成使用 openinstall 功能而开发的，实现了携带参数安装，渠道统计(H5渠道、广告平台渠道、ASA渠道等)，一键拉起全部功能。
 
 `openinstall` 可帮助 Android/iOS 开发者精确的获取 App 每一次安装来源；在 App 安装或拉起后，直达指定场景，大大提高用户转化率和留存率。同时，openinstall 在精准的 app 安装来源跟踪的技术上，开发了免打包，跨平台的渠道统计功能，轻松创建与管理成千上万的渠道，实现线上线下全渠道覆盖。openinstall 统计数据完全独立于第三方平台，提供多维度的统计报表，实时客观地反映渠道效果。
 
@@ -103,7 +103,7 @@ openinstall.reportEffectPoint("effect_test", 1);
 
 ## 如有疑问
 
-若您在集成或使用中有任何疑问或者困难，请 [联系我们](https://www.openinstall.io/)。 
+若您在集成或使用中有任何疑问或者困难，请 [咨询openinstall客服](https://www.openinstall.io/)。 
 
 
 ----- 
