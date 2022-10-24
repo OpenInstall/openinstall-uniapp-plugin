@@ -19,20 +19,12 @@
 在 mainfest.json 的 **App常用其它配置** 中配置 `openinstall` 分配给应用的 `scheme`    
 ![设置scheme](https://res.cdn.openinstall.io/doc/uniapp-scheme.jpg)
 #### 配置universal links（iOS平台）
+1、开启Associated Domains服务  
+需要在苹果开发者后台开启 [苹果开发者后台](https://developer.apple.com)  
 
-HBuilderX2.3.0开始云端打包支持配置XCode中的Capabilities [参考文档](https://ask.dcloud.net.cn/article/36393)  
-在HBuilderX中的manifest.json中配置关联域名：  
-``` xml
-"capabilities": {  
-    "entitlements": {  
-        "com.apple.developer.associated-domains": [  
-            "openinstall分配给应用的关联域名"  
-        ]  
-    }  
-}
-```
+2、在HBuilderX里面配置关联域（Associated Domains）  
 示例如图：  
-![配置关联域名](https://res.cdn.openinstall.io/doc/uniapp-ulink.png)
+![配置关联域名](https://res.cdn.openinstall.io/doc/uniapp-applinks.png)  
 
 ## 三、使用教程
 
@@ -204,7 +196,16 @@ if('iOS' == plus.os.name){
 
 **ASA渠道：**
 
-插件1.5.4及以上版本增加了ASA渠道统计功能，已经集成在SDK内部，不需要增加额外代码。开发者可以通过`getInstall`方法获取`channelCode`对应的值，即为ASA渠道编号。  
+插件1.5.4及以上版本增加了ASA渠道统计功能，已经集成在SDK内部，只需配置增加少量代码。开发者可以通过`getInstall`方法获取`channelCode`对应的值，即为ASA渠道编号。  
 区分ASA渠道和H5渠道及其它渠道，可在openinstall开发者平台创建渠道时，创建不同的渠道编号来做区分，如`asa+广告系列ID`，例子：`asa_1234567890`。
+
+``` js
+//配置asa为1,也可同时配置idfa
+var options = {
+    asa: "1",
+    //idfa: null,
+}
+openinstall.initAdsAttribution(options);
+```
 
 如何在openinstall开发者平台创建ASA渠道，并实现统计功能和上架前测试，请看图文文档 [ASA渠道使用指南](https://www.openinstall.io/doc/asa.html)
