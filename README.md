@@ -149,11 +149,10 @@ if (plus.os.name == "Android") {
         if(event.deniedAlways){
             console.log(event.deniedAlways);
         }
-        // 配置初始化，设置 OAID 和 GAID
+        // 配置初始化，设置 OAID 
         var options = {
             adEnabled: true,
-		    oaid: null,
-		    gaid: null,
+		    oaid: "通过移动安全联盟获取到的 oaid",
         }
         openinstall.configAndroid(options);
         // 权限申请成功，不管用户是否同意，都需要做初始化
