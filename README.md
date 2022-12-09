@@ -200,9 +200,11 @@ if('iOS' == plus.os.name){
 区分ASA渠道和H5渠道及其它渠道，可在openinstall开发者平台创建渠道时，创建不同的渠道编号来做区分，如`asa+广告系列ID`，例子：`asa_1234567890`。
 
 ``` js
-//配置asa为1,也可同时配置idfa
+//配置asa,也可同时配置idfa
+//isDev:"1"是测试模式，可以测试1234567890渠道下的统计数据，正式环境下请去掉该设置
 var options = {
     asa: "1",
+    isDev: "1",
     //idfa: null,
 }
 openinstall.initAdsAttribution(options);
