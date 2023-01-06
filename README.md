@@ -85,7 +85,7 @@ openinstall.reportRegister();
 openinstall.reportEffectPoint("effect_test", 1);
 ```
 
-#### 效果点明显统计
+#### 效果点明细统计
 `reportEffectPoint(pointId, pointValue, extras)`
 - `pointId` : 效果点ID
 - `pointValue` : 效果点值，数值类型
@@ -95,7 +95,7 @@ openinstall.reportEffectPoint("effect_test", 1);
 ``` js
 var extras = {
     "key1": "value1",
-	"key2": "value2",
+    "key2": "value2",
 }
 openinstall.reportEffectPoint("effect_detail", 1, extras);
 ```
