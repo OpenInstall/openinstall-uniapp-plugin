@@ -85,6 +85,21 @@ openinstall.reportRegister();
 openinstall.reportEffectPoint("effect_test", 1);
 ```
 
+#### 效果点明显统计
+`reportEffectPoint(pointId, pointValue, extras)`
+- `pointId` : 效果点ID
+- `pointValue` : 效果点值，数值类型
+- `extras` : 效果点自定义参数和值,key和value都必须是string类型
+
+示例：
+``` js
+var extras = {
+    "key1": "value1",
+	"key2": "value2",
+}
+openinstall.reportEffectPoint("effect_detail", 1, extras);
+```
+
 ## 四、导出apk/ipa包并上传
 - 代码集成完毕后，需要导出安装包上传openinstall后台，openinstall会自动完成所有的应用配置工作。  
 ![上传安装包](https://res.cdn.openinstall.io/doc/upload-ipa-jump.png)
