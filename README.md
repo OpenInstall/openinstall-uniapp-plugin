@@ -100,6 +100,20 @@ var extras = {
 openinstall.reportEffectPoint("effect_detail", 1, extras);
 ```
 
+#### 裂变统计
+`reportShare(shareCode, sharePlatform, callback)`
+- `shareCode` : 分享码
+- `sharePlatform` : 分享平台，参考官网定义的平台字符串
+- `callback` : 上报回调函数
+示例：
+``` js
+openinstall.reportShare("10001", "QQ", function(ret) {
+    if(ret.shouldRetry){
+        console.log('上报失败，请重试');
+    }
+});
+```
+
 ## 四、导出apk/ipa包并上传
 - 代码集成完毕后，需要导出安装包上传openinstall后台，openinstall会自动完成所有的应用配置工作。  
 ![上传安装包](https://res.cdn.openinstall.io/doc/upload-ipa-jump.png)
