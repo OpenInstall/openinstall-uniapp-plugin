@@ -108,6 +108,7 @@ openinstall.reportEffectPoint("effect_detail", 1, extras);
 示例：
 ``` js
 openinstall.reportShare("10001", "QQ", function(ret) {
+    console.log('shouldRetry = ' + ret.shouldRetry + ', message = ' + ret.message);
     if(ret.shouldRetry){
         console.log('上报失败，请重试');
     }
