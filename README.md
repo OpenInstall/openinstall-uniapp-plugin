@@ -51,7 +51,7 @@ openinstall.init();
 openinstall.getInstall(
     8,
     function(result) {
-        console.log('getInstall : channel=' + result.channelCode + ', data=' + result.bindData);
+        console.log('getInstall : channel=' + result.channelCode + ', data=' + result.bindData + ', shouldRetry=' + result.shouldRetry);
     }
 );
 ```
