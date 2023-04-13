@@ -51,7 +51,8 @@ openinstall.init();
 openinstall.getInstall(
     8,
     function(result) {
-        console.log('getInstall : channel=' + result.channelCode + ', data=' + result.bindData + ', shouldRetry=' + result.shouldRetry);
+        console.log('getInstall : channel=' + result.channelCode + ', data=' + result.bindData 
+            + ', shouldRetry=' + result.shouldRetry);
     }
 );
 ```
@@ -100,9 +101,9 @@ var extras = {
 openinstall.reportEffectPoint("effect_detail", 1, extras);
 ```
 
-#### 裂变统计
+#### 裂变分享上报
 `reportShare(shareCode, sharePlatform, callback)`
-- `shareCode` : 分享码
+- `shareCode` : 分享标识码（用户标识）
 - `sharePlatform` : 分享平台，参考官网定义的平台字符串
 - `callback` : 上报回调函数
 示例：
