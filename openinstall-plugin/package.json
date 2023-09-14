@@ -1,7 +1,7 @@
 {
     "name": "openinstall-uniapp-plugin",
     "id": "openinstall-plugin",
-    "version": "1.8.2",
+    "version": "1.8.3",
     "description": "uni-app集成openinstall SDK插件",
     "_dp_type": "nativeplugin",
     "_dp_nativeplugin": {
