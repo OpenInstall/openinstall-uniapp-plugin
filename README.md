@@ -1,7 +1,7 @@
 ## 一、插件介绍
 此插件是 openinstall 为了方便 uni-app 集成使用 openinstall 功能而开发的，实现了携带参数安装，渠道统计(H5渠道、广告平台渠道、ASA渠道等)，一键拉起全部功能。
 
-如有集成问题，请联系技术支持QQ：800853853
+**如有集成问题，请联系技术支持QQ：800853853**
 
 `openinstall` 可帮助 Android/iOS 开发者精确的获取 App 每一次安装来源；在 App 安装或拉起后，直达指定场景，大大提高用户转化率和留存率。同时，openinstall 在精准的 app 安装来源跟踪的技术上，开发了免打包，跨平台的渠道统计功能，轻松创建与管理成千上万的渠道，实现线上线下全渠道覆盖。openinstall 统计数据完全独立于第三方平台，提供多维度的统计报表，实时客观地反映渠道效果。
 
@@ -139,7 +139,7 @@ openinstall.reportShare("10001", "QQ", function(ret) {
 
 ### Android平台
 
-（1）针对广告平台接入，新增配置接口，在调用 init 之前调用。参考 [广告平台对接Android集成指引](https://www.openinstall.io/doc/ad_android.html)
+针对广告平台接入，新增配置接口，需要在调用 init 之前调用。参考 [广告平台对接Android集成指引](https://www.openinstall.io/doc/ad_android.html)
 ``` js
 var options = {
     adEnabled: true,
@@ -151,54 +151,14 @@ options 参数如下：
 | 参数名| 参数类型 | 描述 |  
 | --- | --- | --- |
 | adEnabled| bool | 广告平台接入开关（必须） |
-| macDisabled | bool | 是否禁止 SDK 获取 mac 地址 |
-| imeiDisabled | bool | 是否禁止 SDK 获取 imei |
+| ~~macDisabled~~ | bool | （废弃）是否禁止 SDK 获取 mac 地址 |
+| ~~imeiDisabled~~ | bool | （废弃）是否禁止 SDK 获取 imei |
+| imei | string | 通过系统api获取到的 imei，SDK 将不再获取 |
+| macAddress | string | 通过系统api获取到的 macAddress，SDK 将不再获取 |
 | gaid | string | 通过 google api 获取到的 advertisingId，SDK 将不再获取gaid |
 | oaid | string | 通过移动安全联盟获取到的 oaid，SDK 将不再获取oaid |
 
-
-（2） 为了精准地匹配到渠道，需要获取设备唯一标识码，因此需要在 `manifest.json` 中声明权限，在 “App模块权限配置” 的 “Android打包权限配置” 勾选上 `<uses-permission android:name="android.permission.READ_PHONE_STATE"/>`
-
-（3）在 `manifest.json` 中设置，关闭 `uni-app` 自动获取 `android.permission.READ_PHONE_STATE` 权限  
-``` json
-    "permissionPhoneState" : {
-        "request" : "none",
-        "prompt" : ""
-    },        
-```
-示例如图：  
-![设置权限](https://res.cdn.openinstall.io/doc/uniapp-permission.png)
-
-（4）在 `App.vue` 的 `onLaunch` 方法中进行初始化，先申请权限，之后进行配置和初始化
-``` js
-if (plus.os.name == "Android") {
-    plus.android.requestPermissions(["android.permission.READ_PHONE_STATE"], function(event) {
-        if(event.granted){
-            console.log(event.granted);
-        }
-        if(event.deniedPresent){
-            console.log(event.deniedPresent);
-        }
-        if(event.deniedAlways){
-            console.log(event.deniedAlways);
-        }
-        // 配置初始化，设置 OAID 
-        var options = {
-            adEnabled: true,
-		    oaid: "通过移动安全联盟获取到的 oaid",
-        }
-        openinstall.configAndroid(options);
-        // 权限申请成功，不管用户是否同意，都需要做初始化
-        openinstall.init();
-        // 初始化完成后，才能做其他api调用
-        openinstall.registerWakeUp(function(result) {
-            console.log('wakeup : channel=' + result.channelCode + ', data=' + result.bindData);
-        });
-    }, function(event) {
-        // 权限申请错误
-    })
-}
-```
+只要将 `adEnabled` 设置为 `true`，SDK 内部会获取广告需要的设备信息；一旦传入对应的参数，SDK 则会使用传入的参数
 
 ### iOS平台
 包括广告平台渠道统计和ASA渠道：
