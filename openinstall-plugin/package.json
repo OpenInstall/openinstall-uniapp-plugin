@@ -1,7 +1,7 @@
 {
     "name": "openinstall-uniapp-plugin",
     "id": "openinstall-plugin",
-    "version": "1.9.4",
+    "version": "2.0.0",
     "description": "uni-app集成openinstall SDK插件",
     "_dp_type": "nativeplugin",
     "_dp_nativeplugin": {
@@ -16,12 +16,12 @@
             "hooksClass": "OpenInstallUniProxy",
             "integrateType": "library",
             "deploymentTarget": "9.0",
-			"parameters": {
-			    "APP_KEY": {
-			        "des": "openinstall平台为应用分配的AppKey",
-			        "key": "com.openinstall.APP_KEY"
-			    }
-			}
+            "parameters": {
+                "APP_KEY": {
+                    "des": "openinstall平台为应用分配的AppKey",
+                    "key": "com.openinstall.APP_KEY"
+                }
+            }
         },
         "android": {
             "plugins": [
@@ -36,8 +36,7 @@
             "dependencies": [],
             "abis": [],
             "minSdkVersion": "19",
-            "permissions": [
-            ],
+            "permissions": [],
             "parameters": {
                 "APP_KEY": {
                     "des": "openinstall平台为应用分配的AppKey",
